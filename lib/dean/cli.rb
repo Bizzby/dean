@@ -6,7 +6,7 @@ module Dean
 
       desc 'build', 'Builds the ipa'
       def build()
-        puts "Imma build your app"
+        Dean::Build.new.build()
       end
 
       desc 'distribute', 'Distribute the app. (Now only uploads the ipa to the S3 server)'
