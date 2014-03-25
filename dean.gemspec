@@ -19,6 +19,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'thor', '~> 0.19.1'
+  spec.add_dependency 'shenzhen', '~> 0.5.4'
+  spec.add_dependency 'plist', '~> 3.1.0'
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
