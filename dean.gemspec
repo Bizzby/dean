@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'thor', '~> 0.19.1'
   spec.add_dependency 'shenzhen', '~> 0.5.4'
   spec.add_dependency 'plist', '~> 3.1.0'
+  spec.add_dependency 'aws-sdk', '~> 1.31.3'
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"

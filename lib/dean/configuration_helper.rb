@@ -15,6 +15,10 @@ module Dean
       symbolize_keys environment[:build_settings]
     end
 
+    def s3_settings_for_environment(environment)
+      symbolize_keys environment[:s3_settings]
+    end
+
     private
 
     def symbolize_keys(hash)

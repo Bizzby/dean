@@ -11,12 +11,15 @@ module Dean
 
       desc 'distribute', 'Distribute the app. (Now only uploads the ipa to the S3 server)'
       def distribute()
-        puts "Imma upload your app"
+        Dean::Upload.new.upload_all_environments
       end
 
       desc 'deploy', 'Deploy the app. Builds AND distributes the app'
       def deploy()
-        puts "Imma build AND upload your app"
+        Dean::ConfigurationHelper.new.all_environmenst.each do |environment|
+          Dean::Build.new.build_environmet environment
+          Dean::Upload.new.upload_environmet environment
+        end
       end
     end
   end
