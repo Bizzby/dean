@@ -4,7 +4,7 @@ module Dean
   class Build
 
     def build
-      configurations = symbolize_keys YAML.load_file Dir.pwd + '/.deanrc'
+      configurations = symbolize_keys YAML.load_file Dir.pwd + '/.dean.yml'
       configurations[:environments].each do |environment|
         environment = symbolize_keys environment
         puts environment[:name]
