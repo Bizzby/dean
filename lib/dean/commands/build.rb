@@ -7,14 +7,15 @@ module Dean
   class Build
 
     def build_all_environments
-      configurations = symbolize_keys YAML.load_file Dir.pwd + '/.dean.yml'
-      configurations[:environments].each do |environment|
-        environment = symbolize_keys environment
+      configurations_helper = ConfigurationHelper.new
+      configurations_helper.all_environments.each do |environment|
         build_environment environment
       end
     end
 
     def build_environment(environment)
+      build_settings = ConfigurationHelper.new().build_settings_for_environment environment
+
       # Extract version info
       plist_path = "#{Dir.pwd}/#{environment[:plist]}"
 
@@ -25,8 +26,6 @@ module Dean
 
       plist = Plist::parse_xml plist_path
       version = plist["CFBundleShortVersionString"]
-
-      build_settings = symbolize_keys environment[:build_settings]
 
       ipa_path = "#{Dir.pwd}/#{build_settings[:location]}/#{version}"
 
@@ -54,12 +53,6 @@ module Dean
       else
         puts "Skipping"
       end
-    end
-
-    private
-
-    def symbolize_keys(hash)
-      Hash[hash.map { |key, value| [key.to_sym, value] }]
     end
 
     def ipa_lookup(path)
