@@ -16,16 +16,7 @@ module Dean
     def build_environment(environment)
       build_settings = ConfigurationHelper.new().build_settings_for_environment environment
 
-      # Extract version info
-      plist_path = "#{Dir.pwd}/#{environment[:plist]}"
-
-      if not File.exists? plist_path
-        puts "Cannot open #{plist_path}. File not found"
-        return
-      end
-
-      plist = Plist::parse_xml plist_path
-      version = plist["CFBundleShortVersionString"]
+      version = ProjectVersionHelper.new().version_from_plist environment[:plist]
 
       ipa_path = "#{Dir.pwd}/#{build_settings[:location]}/#{version}"
 
