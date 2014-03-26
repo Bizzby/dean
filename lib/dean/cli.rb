@@ -16,9 +16,9 @@ module Dean
 
       desc 'deploy', 'Deploy the app. Builds AND distributes the app'
       def deploy()
-        Dean::ConfigurationHelper.new.all_environmenst.each do |environment|
-          Dean::Build.new.build_environmet environment
-          Dean::Upload.new.upload_environmet environment
+        Dean::ConfigurationHelper.new.all_environments.each do |environment|
+          Dean::Build.new.build_environment environment
+          Dean::Upload.new.upload_environment environment
         end
       end
     end

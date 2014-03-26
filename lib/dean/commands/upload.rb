@@ -5,11 +5,11 @@ module Dean
 
     def upload_all_environments
       ConfigurationHelper.new().all_environments.each do |environment|
-        upload_environmet environment
+        upload_environment environment
       end
     end
 
-    def upload_environmet(environment)
+    def upload_environment(environment)
       configurations = ConfigurationHelper.new().s3_settings_for_environment environment
       
       s3 = AWS::S3.new
