@@ -11,7 +11,7 @@ module Dean
       end
 
       plist = Plist::parse_xml plist_path
-      version = plist["CFBundleShortVersionString"]
+      version = plist["CFBundleVersion"]
     end
   end
 end
