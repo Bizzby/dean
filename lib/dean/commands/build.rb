@@ -20,8 +20,13 @@ module Dean
 
       ipa_path = "#{Dir.pwd}/#{build_settings[:location]}/#{version}"
 
-      if !build_configuration_exists? build_settings[:build_configuration]
-        puts "Build configuration: #{build_settings[:build_configuration]} does not exist!"
+      if not build_configuration_exists? build_settings[:build_configuration]
+        puts "Build configuration #{build_settings[:build_configuration]} does not exist!"
+        return
+      end
+
+      if not provisioning_profile_exists? build_settings[:provisioning_profile]
+        puts "Provisioning profile #{build_settings[:provisioning_profile]} not found on disk!"
         return
       end
 
@@ -50,6 +55,8 @@ module Dean
       end
     end
 
+    private
+
     def ipa_lookup(path)
       if Dir.exists? path
         puts "A build was found already. Do you wish to continue and override it? (y/n)"
@@ -63,7 +70,11 @@ module Dean
     def build_configuration_exists?(build_configuration)
       # This is **very** dirty
       matches = `xcodeproj show Bizzby.xcodeproj --format hash | grep -w #{build_configuration} | wc -l`
-      return matches.to_i > 0
+      matches.to_i > 0
+    end
+
+    def provisioning_profile_exists?(profile)
+      File.exists? "#{Dir.pwd}/#{profile}"
     end
   end
 end
