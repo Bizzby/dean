@@ -20,6 +20,11 @@ module Dean
 
       ipa_path = "#{Dir.pwd}/#{build_settings[:location]}/#{version}"
 
+      if !build_configuration_exists? build_settings[:build_configuration]
+        puts "Build configuration: #{build_settings[:build_configuration]} does not exist!"
+        return
+      end
+
       if ipa_lookup ipa_path
         puts "Going to build app for #{environment[:name]}"
 
@@ -32,7 +37,6 @@ module Dean
         build_options += " --archive"
 
         system "ipa build #{build_options}"
-        # puts "FAKE ipa build #{build_options}"
 
         #
         # TODO this shouldn't be static, but I need more time to think about how to structure it
@@ -54,6 +58,12 @@ module Dean
       else
         return true
       end
+    end
+
+    def build_configuration_exists?(build_configuration)
+      # This is **very** dirty
+      matches = `xcodeproj show Bizzby.xcodeproj --format hash | grep -w #{build_configuration} | wc -l`
+      return matches.to_i > 0
     end
   end
 end
