@@ -21,12 +21,12 @@ module Dean
       ipa_path = "#{Dir.pwd}/#{build_settings[:location]}/#{version}"
 
       if not build_configuration_exists? build_settings[:build_configuration]
-        puts "Build configuration #{build_settings[:build_configuration]} does not exist!"
+        puts "Build configuration #{build_settings[:build_configuration]} does not exist!".red
         return
       end
 
       if not provisioning_profile_exists? build_settings[:provisioning_profile]
-        puts "Provisioning profile #{build_settings[:provisioning_profile]} not found on disk!"
+        puts "Provisioning profile #{build_settings[:provisioning_profile]} not found on disk!".red
         return
       end
 
@@ -51,7 +51,7 @@ module Dean
         FileUtils.mv "#{Dir.pwd}/Bizzby.ipa", "#{ipa_path}/Bizzby.ipa"
         FileUtils.mv "#{Dir.pwd}/Bizzby.app.dSYM.zip", "#{ipa_path}/Bizzby.app.dSYM.zip"
       else
-        puts "Skipping"
+        puts "Skipping".yellow
       end
     end
 

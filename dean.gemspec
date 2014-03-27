@@ -22,8 +22,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'shenzhen', '~> 0.5.4'
   spec.add_dependency 'plist', '~> 3.1.0'
   spec.add_dependency 'aws-sdk', '~> 1.31.3'
+  spec.add_dependency 'colorize', '~> 0.7.0'
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec", "~> 2.14.7"
+  spec.add_development_dependency "rspec", "~> 2.14.1"
 end
