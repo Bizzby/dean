@@ -7,7 +7,7 @@ module Dean
 
       if not File.exists? plist_path
         puts "Cannot open #{plist_path}. File not found"
-        return
+        return -1
       end
 
       plist = Plist::parse_xml plist_path
