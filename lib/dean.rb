@@ -1,6 +1,7 @@
 require "dean/version"
 require "dean/configuration_helper"
 require "dean/project_version_helper"
+require "dean/semver_helper"
 require "dean/cli"
 require "dean/commands/build"
 require "dean/commands/upload"
