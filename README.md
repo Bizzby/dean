@@ -1,6 +1,18 @@
 # Dean
 
-TODO: Write a gem description
+Dean is a **very opinionated** gem that the [BIZZBY](http://bizzby.com/) iOS team uses to automate the mundane tasks of bumping build numbers and distributing beta versions of the apps. Deep down is nothing more than a wrapper around other tools, mainly the excellent [shenzhen](https://github.com/nomad/shenzhen/) by [Mattt Thompson](http://github.com/mattt).
+
+The project is super alpha, use it at your own risk.
+
+A better documentation will be provided once the Dean is more stable. If you're interested in using it or contributing just tweet at [@mokagio](https://twitter.com/mokagio).
+
+### A note on the code
+
+Dean is been made by an iOS developer surrounded by Node developers, so the quality of the Ruby code might not be awesome. Every comment on the code is very welcome!
+
+--- 
+
+_This is the default gem file README, gonna use it when the project is more mature_
 
 ## Installation
 
