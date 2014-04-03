@@ -43,13 +43,12 @@ module Dean
 
         system "ipa build #{build_options}"
 
-        #
-        # TODO this shouldn't be static, but I need more time to think about how to structure it
-        #
-        # Once build succed move .ipa and .dSYM in the proper folder
+        # Once build succeeded move .ipa and .dSYM in the proper folder
         FileUtils.mkdir_p ipa_path
-        FileUtils.mv "#{Dir.pwd}/Bizzby.ipa", "#{ipa_path}/Bizzby.ipa"
-        FileUtils.mv "#{Dir.pwd}/Bizzby.app.dSYM.zip", "#{ipa_path}/Bizzby.app.dSYM.zip"
+        ipa_name = ipa_name_from_project build_settings[:project]
+        dSYM_name = dSYM_name_from_project build_settings[:project]
+        FileUtils.mv "#{Dir.pwd}/#{ipa_name}", "#{ipa_path}/#{ipa_name}"
+        FileUtils.mv "#{Dir.pwd}/#{dSYM_name}", "#{ipa_path}/#{dSYM_name}"
       else
         puts "Skipping".yellow
       end
@@ -75,6 +74,14 @@ module Dean
 
     def provisioning_profile_exists?(profile)
       File.exists? "#{Dir.pwd}/#{profile}"
+    end
+
+    def ipa_name_from_project(project)
+      File.basename(project, ".xcodeproj") + ".ipa"
+    end
+
+    def dSYM_name_from_project(project)
+      File.basename(project, ".xcodeproj") + ".app.dSYM.zip"
     end
   end
 end
