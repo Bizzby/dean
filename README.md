@@ -1,6 +1,8 @@
 # Dean
 
 [![Build Status](https://travis-ci.org/Bizzby/dean.svg)](https://travis-ci.org/Bizzby/dean)
+[![Code Climate](https://codeclimate.com/github/Bizzby/dean.png)](https://codeclimate.com/github/Bizzby/dean)
+[![Stories in Ready](https://badge.waffle.io/bizzby/dean.png?label=ready&title=Ready)](https://waffle.io/bizzby/dean)
 
 Dean is a **very opinionated** gem that the [BIZZBY](http://bizzby.com/) iOS team uses to automate the mundane tasks of bumping build numbers and distributing beta versions of the apps. Deep down is nothing more than a wrapper around other tools, mainly the excellent [shenzhen](https://github.com/nomad/shenzhen/) by [Mattt Thompson](http://github.com/mattt).
 
