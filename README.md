@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/bizzby/dean.png?label=ready&title=Ready)](https://waffle.io/bizzby/dean)
 # Dean
 
 [![Build Status](https://travis-ci.org/Bizzby/dean.svg)](https://travis-ci.org/Bizzby/dean)
