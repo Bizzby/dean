@@ -16,7 +16,7 @@ module Dean
       end
 
       plist = Plist::parse_xml plist_path
-      version = plist["CFBundleVersion"]
+      return plist["CFBundleVersion"]
     end
 
     def set_version_in_plist(version, plist_path)
