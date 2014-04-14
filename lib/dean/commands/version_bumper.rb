@@ -1,6 +1,17 @@
 module Dean
   class VersionBumper
 
+    def bump_all_environments(value)
+      configurations_helper = ConfigurationHelper.new
+      configurations_helper.all_environments.each do |environment|
+        bump_environment value, environment
+      end
+    end
+
+    def bump_environment(value, environment)
+      bump environment[:plist], value
+    end
+
     def bump(plist, value)
       version = Dean::ProjectVersionHelper.new.version_from_plist plist
       semver_helper = Dean::SemverHelper.new

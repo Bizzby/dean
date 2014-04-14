@@ -4,6 +4,11 @@ module Dean
   module Cli
     class Application < Thor
 
+      desc 'bump_version VALUE', 'Bump the given version VALUE of the project'
+      def bump(value)
+        Dean::VersionBumper.new.bump_all_environments value.to_sym
+      end
+
       desc 'build', 'Builds the ipa'
       def build()
         Dean::Build.new.build_all_environments
