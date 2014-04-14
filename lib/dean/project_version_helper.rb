@@ -6,7 +6,7 @@ module Dean
       plist_path = File.expand_path(plist, __FILE__)
 
       if not File.exists? plist_path
-        puts "Cannot open #{plist_path}. File not found"
+        # Maybe raise exception instead?
         return -1
       end
 
