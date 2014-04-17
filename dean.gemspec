@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
   # spec.add_dependency 'aws-sdk', '~> 1.31.3'
   spec.add_dependency 'colorize', '~> 0.7.0'
   spec.add_dependency 'semantic', '~> 1.3.0'
+  spec.add_dependency 'xcodeproj', '~> 0.16.1'
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
