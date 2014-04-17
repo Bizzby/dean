@@ -11,7 +11,12 @@ module Dean
 
       desc 'build', 'Builds the ipa'
       def build()
-        Dean::Build.new.build_all_environments
+        begin
+          Dean::Build.new.build_all_environments
+        rescue Exception => e
+          log_exception e
+        end
+
       end
 
       desc 'distribute', 'Distribute the app. (Now only uploads the ipa to the S3 server)'
@@ -22,9 +27,20 @@ module Dean
       desc 'deploy', 'Deploy the app. Builds AND distributes the app'
       def deploy()
         Dean::ConfigurationHelper.new.all_environments.each do |environment|
-          Dean::Build.new.build_environment environment
-          Dean::Upload.new.upload_environment environment
+          begin
+            Dean::Build.new.build_environment environment
+            Dean::Upload.new.upload_environment environment
+          rescue Exception => e
+            log_exception e
+          end
         end
+      end
+
+      private
+
+      def log_exception(exception)
+        puts "Something went wrong!".red
+        puts "#{exception.message}".red
       end
     end
   end

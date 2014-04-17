@@ -16,23 +16,19 @@ module Dean
     def build_environment(environment)
       build_settings = ConfigurationHelper.new().build_settings_for_environment environment
 
+      if not build_configuration_exists? build_settings[:build_configuration]
+        fail IOError, "Build configuration #{build_settings[:build_configuration]} does not exist!"
+      end
+
+      if not provisioning_profile_exists? build_settings[:provisioning_profile]
+        fail IOError, "Provisioning profile #{build_settings[:provisioning_profile]} not found on disk!"
+      end
+
       version = ProjectVersionHelper.new().version_from_plist environment[:plist]
 
       ipa_path = "#{Dir.pwd}/#{build_settings[:location]}/#{version}"
 
-      if not build_configuration_exists? build_settings[:build_configuration]
-        puts "Build configuration #{build_settings[:build_configuration]} does not exist!".red
-        return
-      end
-
-      if not provisioning_profile_exists? build_settings[:provisioning_profile]
-        puts "Provisioning profile #{build_settings[:provisioning_profile]} not found on disk!".red
-        return
-      end
-
       if ipa_lookup ipa_path
-        puts "Going to build app for #{environment[:name]}"
-
         build_options = "--workspace #{build_settings[:workspace]}"
         build_options += " --project #{build_settings[:project]}"
         build_options += " -c #{build_settings[:build_configuration]}"
