@@ -35,14 +35,25 @@ module Dean
         Dean::Upload.new.upload_all_environments
       end
 
-      desc 'deploy', 'Deploy the app. Builds AND distributes the app'
-      def deploy()
+      desc 'deploy ENV', 'Deploy the app. Builds AND distributes the app. An optional environment name can be passed to deploy only one environment'
+      def deploy(environment_name=nil)
         Dean::ConfigurationHelper.new.all_environments.each do |environment|
-          begin
-            Dean::Build.new.build_environment environment
-            Dean::Upload.new.upload_environment environment
-          rescue Exception => e
-            log_exception e
+          if environment_name != nil
+            if environment_name == environment[:name]
+              begin
+                Dean::Build.new.build_environment environment
+                Dean::Upload.new.upload_environment environment
+              rescue Exception => e
+                log_exception e
+              end
+            end
+          else
+            begin
+              Dean::Build.new.build_environment environment
+              Dean::Upload.new.upload_environment environment
+            rescue Exception => e
+              log_exception e
+            end
           end
         end
       end
