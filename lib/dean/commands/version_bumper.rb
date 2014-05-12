@@ -10,6 +10,7 @@ module Dean
 
     def bump_environment(value, environment)
       bump environment[:plist], value
+      bump_short environment[:plist], value
     end
 
     def bump(plist, value)

@@ -4,6 +4,25 @@ require "tempfile"
 describe Dean::VersionBumper do
   let (:bumper) { described_class.new }
 
+  context "bumping an environment" do
+    before(:each) do
+      Dean::ProjectVersionHelper.stub(:version_from_plist) { "1.0.0" }
+      Dean::ProjectVersionHelper.any_instance.stub(:set_version_in_plist)
+      Dean::ProjectVersionHelper.stub(:short_version_from_plist) { "1.0.0" }
+      Dean::ProjectVersionHelper.any_instance.stub(:set_short_version_in_plist)
+    end
+
+    it "should bump the version" do
+      bumper.should_receive :bump
+      bumper.bump_environment "major", { :plist => "path" }
+    end
+
+    it "should bump the short version" do
+      bumper.should_receive :bump_short
+      bumper.bump_environment "major", { :plist => "path" }
+    end
+  end
+
   context "bumping the version value of a plist file" do
     before(:each) do
       @temp_plist = setup_plist
