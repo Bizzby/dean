@@ -23,6 +23,19 @@ describe Dean::VersionBumper do
     end
   end
 
+  context "bumping all environments" do
+    it "should not bump the same plist twice" do
+      @temp_plist = setup_plist
+      stage_env = { :name => "stage", :plist => @temp_plist.path }
+      production_env = { :name => "prod", :plist => @temp_plist.path }
+      Dean::ConfigurationHelper.any_instance.stub(:all_environments) { [stage_env, production_env] }
+
+      bumper.bump_all_environments(:major)
+      expect(Plist::parse_xml(@temp_plist.path)['CFBundleVersion']).to eq '1.0.0'
+      expect(Plist::parse_xml(@temp_plist.path)['CFBundleShortVersionString']).to eq '1.0.0'
+    end
+  end
+
   context "bumping the version value of a plist file" do
     before(:each) do
       @temp_plist = setup_plist
