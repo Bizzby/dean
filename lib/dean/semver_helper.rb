@@ -4,19 +4,19 @@ module Dean
   class SemverHelper
 
     def bump_major version
-      semver = semver version
+      semver = no_pre_semver version
       semver.major += 1
       semver.to_s
     end
 
     def bump_minor version
-      semver = semver version
+      semver = no_pre_semver version
       semver.minor += 1
       semver.to_s
     end
 
     def bump_patch version
-      semver = semver version
+      semver = no_pre_semver version
       semver.patch += 1
       semver.to_s
     end
@@ -43,6 +43,14 @@ module Dean
 
     def semver(string)
       Semantic::Version.new string
+    end
+
+    def no_pre_semver(string)
+      v = semver string
+      if v.pre
+        v.pre = nil
+      end
+      return v
     end
   end
 end
