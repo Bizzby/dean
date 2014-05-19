@@ -6,12 +6,17 @@ module Dean
     def bump_major version
       semver = no_pre_semver version
       semver.major += 1
+      semver.minor = 0
+      semver.patch = 0
+      semver.pre = nil
       semver.to_s
     end
 
     def bump_minor version
       semver = no_pre_semver version
       semver.minor += 1
+      semver.patch = 0
+      semver.pre = nil
       semver.to_s
     end
 

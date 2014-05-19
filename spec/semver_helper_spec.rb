@@ -7,8 +7,16 @@ describe Dean::SemverHelper do
     expect(helper.bump_major '1.0.0').to eq '2.0.0'
   end
 
+  it "shuold bump the major value of the given version, zeroing the lesser values" do
+    expect(helper.bump_major '1.2.3-pre.4').to eq '2.0.0'
+  end
+
   it "shuold bump the minor value of the given version" do
     expect(helper.bump_minor '1.0.0').to eq '1.1.0'
+  end
+
+  it "shuold bump the minor value of the given version, zeroing the lesser values" do
+    expect(helper.bump_minor '1.2.3-pre.4').to eq '1.3.0'
   end
 
   it "shuold bump the patch value of the given version" do
