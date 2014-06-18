@@ -6,11 +6,11 @@ require 'dean/version'
 Gem::Specification.new do |spec|
   spec.name          = "dean"
   spec.version       = Dean::VERSION
-  spec.authors       = ["Gio"]
+  spec.authors       = ["Giovanni Lodi"]
   spec.email         = ["giovanni.lodi42@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{An (opinionated) CLI tool to ease mundane tasks of the iOS beta distribution}
+  spec.summary       = %q{An (opinionated) CLI tool to ease mundane tasks of the iOS beta distribution, such as version bumps, archiving, and deploying, all configured in a simple unique file.}
+  spec.homepage      = "https://github.com/bizzby/dean"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
