@@ -34,6 +34,7 @@ module Dean
         build_options += " -c #{build_settings[:build_configuration]}"
         build_options += " -s #{build_settings[:scheme]}"
         build_options += " -m #{build_settings[:provisioning_profile]}"
+        build_options += " -i \"#{build_settings[:signin_identity]}\""
         build_options += " --clean"
         build_options += " --archive"
 
