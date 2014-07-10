@@ -26,7 +26,7 @@ module Dean
       semver.to_s
     end
 
-    def bump_pre version
+    def bump_pre version, name=nil
       semver = semver version 
       pre = semver.pre
 
@@ -34,8 +34,14 @@ module Dean
 
       split = pre.split('.')
       if split.length == 1
+        if name
+          semver.pre = name
+        end
         semver.pre += '.1'
       else
+        if name
+          split[0] = name
+        end
         value = split[-1]
         split[-1] = (value.to_i + 1).to_s
         semver.pre = split.join '.'

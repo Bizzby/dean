@@ -66,6 +66,13 @@ describe Dean::VersionBumper do
       bumper.bump tempfile.path, :pre
       expect(Plist::parse_xml(tempfile.path)['CFBundleVersion']).to eq '0.0.0-pre.1'
     end
+
+    it "should bump the pre value of the given verison when passed the :pre parameter, and set the pre name to the given one" do
+      tempfile = setup_plist '0.0.0-pre.0'
+      pre_name = "any_string"
+      bumper.bump tempfile.path, :pre, pre_name
+      expect(Plist::parse_xml(tempfile.path)['CFBundleVersion']).to eq "0.0.0-#{pre_name}.1"
+    end
   end
 
   context "bumping the short version value of a plist file" do
@@ -97,7 +104,13 @@ describe Dean::VersionBumper do
       tempfile = setup_plist '0.0.0', '0.0.0-pre.0'
       bumper.bump_short tempfile.path, :pre
       expect(Plist::parse_xml(tempfile.path)['CFBundleShortVersionString']).to eq '0.0.0-pre.1'
+    end
 
+    it "should bump the pre value of the given verison when passed the :pre parameter, and set the pre name to the given one" do
+      tempfile = setup_plist '0.0.0', '0.0.0-pre.0'
+      pre_name = "any_string"
+      bumper.bump_short tempfile.path, :pre, pre_name
+      expect(Plist::parse_xml(tempfile.path)['CFBundleShortVersionString']).to eq "0.0.0-#{pre_name}.1"
     end
   end
 

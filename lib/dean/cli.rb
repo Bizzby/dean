@@ -5,14 +5,14 @@ module Dean
     class Application < Thor
 
       desc 'bump_version VALUE', 'Bump the given version VALUE of the project'
-      def bump(value)
+      def bump(value, name=nil)
         plists = []
         Dean::ConfigurationHelper.new.all_environments.each do |environment|
           plists.push environment[:plist]
         end
         old_version = Dean::ProjectVersionHelper.new.version_from_plist plists[0]
 
-        Dean::VersionBumper.new.bump_all_environments value.to_sym
+        Dean::VersionBumper.new.bump_all_environments value.to_sym, name
 
         # commit and tag, here only for the moment!
         new_version = Dean::ProjectVersionHelper.new.version_from_plist plists[0]

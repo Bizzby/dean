@@ -44,4 +44,11 @@ describe Dean::SemverHelper do
       expect(helper.bump_patch '1.0.0-pre').to eq '1.0.1'
     end
   end
+
+  context "when bumping a version pre value passing a name parameter" do
+    it "shuold bump the pre value of the given version, changing the name to the given one" do
+      pre_name = "any_string"
+      expect(helper.bump_pre '1.0.0-pre.2', pre_name).to eq "1.0.0-#{pre_name}.3"
+    end
+  end
 end
