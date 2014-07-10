@@ -31,6 +31,10 @@ describe Dean::SemverHelper do
     expect(helper.bump_pre '1.0.0-pre').to eq '1.0.0-pre.1'
   end
 
+  it "shuold set the pre value of the given version to pre.1 if no pre value is present" do
+    expect(helper.bump_pre '1.0.0').to eq '1.0.0-pre.1'
+  end
+
   context "when bumping a version with a pre value" do
     it "shold remove the pre value if bumping the major value" do
       expect(helper.bump_major '1.0.0-pre.0').to eq '2.0.0'

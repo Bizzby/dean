@@ -30,7 +30,11 @@ module Dean
       semver = semver version 
       pre = semver.pre
 
-      return if not pre
+      if not pre
+        pre_name = name ? name : "pre"
+        semver.pre = pre_name + ".1"
+        return semver.to_s
+      end
 
       split = pre.split('.')
       if split.length == 1
