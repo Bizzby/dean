@@ -23,11 +23,11 @@ module Dean
       if ipa_on_s3.exists?
         puts "The file already exists on the bucket!"
       else
-        #
-        # TODO this shouldn't be static, but I need more time to think about how to structure it
-        #
         build_settings = ConfigurationHelper.new().build_settings_for_environment environment
-        disk_location = "#{Dir.pwd}/#{build_settings[:location]}/#{version}/Bizzby.ipa"
+        # TODO: We are assuming the project name be the .ipa name. This is not safe
+        project_name = build_settings[:project]
+        app_name = File.basename(project_name, File.extname(project_name))
+        disk_location = "#{Dir.pwd}/#{build_settings[:location]}/#{version}/#{app_name}.ipa"
 
         puts "Uploading .ipa to #{s3_location}"
         ipa_on_s3.write( :file => disk_location)
