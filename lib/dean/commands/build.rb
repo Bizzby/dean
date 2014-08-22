@@ -16,7 +16,7 @@ module Dean
     def build_environment(environment)
       build_settings = ConfigurationHelper.new().build_settings_for_environment environment
 
-      if not build_configuration_exists? build_settings[:build_configuration]
+      if not build_configuration_exists? build_settings
         fail IOError, "Build configuration #{build_settings[:build_configuration]} does not exist!"
       end
 
@@ -63,9 +63,11 @@ module Dean
       end
     end
 
-    def build_configuration_exists?(build_configuration)
+    def build_configuration_exists?(build_settings)
       # This is **very** dirty
-      matches = `xcodeproj show Bizzby.xcodeproj --format hash | grep -w #{build_configuration} | wc -l`
+      project = build_settings[:project]
+      build_configuration = build_settings[:build_configuration]
+      matches = `xcodeproj show #{project} --format hash | grep -w #{build_configuration} | wc -l`
       matches.to_i > 0
     end
 
