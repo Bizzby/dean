@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Dean::SemverHelper do
+describe XCBump::SemverHelper do
   let (:helper) { described_class.new }
 
   it "shuold bump the major value of the given version" do

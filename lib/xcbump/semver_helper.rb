@@ -1,6 +1,6 @@
 require "semantic"
 
-module Dean
+module XCBump
   class SemverHelper
 
     def bump_major version
