@@ -1,4 +1,4 @@
-module Dean
+module XCBump
   class GitHelper
 
     def commit_asking_user(prompt, new_version, envs_paths)
