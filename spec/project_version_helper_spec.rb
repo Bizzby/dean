@@ -1,7 +1,7 @@
 require "spec_helper"
 require "tempfile"
 
-describe Dean::ProjectVersionHelper do
+describe XCBump::ProjectVersionHelper do
   let (:helper) { described_class.new }
 
   context "when the plist exists on disk" do

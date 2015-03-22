@@ -6,10 +6,10 @@ describe Dean::VersionBumper do
 
   context "bumping an environment" do
     before(:each) do
-      Dean::ProjectVersionHelper.stub(:version_from_plist) { "1.0.0" }
-      Dean::ProjectVersionHelper.any_instance.stub(:set_version_in_plist)
-      Dean::ProjectVersionHelper.stub(:short_version_from_plist) { "1.0.0" }
-      Dean::ProjectVersionHelper.any_instance.stub(:set_short_version_in_plist)
+      XCBump::ProjectVersionHelper.stub(:version_from_plist) { "1.0.0" }
+      XCBump::ProjectVersionHelper.any_instance.stub(:set_version_in_plist)
+      XCBump::ProjectVersionHelper.stub(:short_version_from_plist) { "1.0.0" }
+      XCBump::ProjectVersionHelper.any_instance.stub(:set_short_version_in_plist)
     end
 
     it "should bump the version" do

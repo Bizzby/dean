@@ -1,4 +1,4 @@
-module Dean
+module XCBump
   class ProjectVersionHelper
 
     def version_from_plist(plist)

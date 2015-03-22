@@ -16,7 +16,7 @@ module Dean
     end
 
     def bump(plist, value, name=nil)
-      version = Dean::ProjectVersionHelper.new.version_from_plist plist
+      version = XCBump::ProjectVersionHelper.new.version_from_plist plist
       semver_helper = Dean::SemverHelper.new
 
       new_version = version
@@ -31,11 +31,11 @@ module Dean
         new_version = semver_helper.bump_pre version, name
       end
 
-      Dean::ProjectVersionHelper.new.set_version_in_plist new_version, plist
+      XCBump::ProjectVersionHelper.new.set_version_in_plist new_version, plist
     end
 
     def bump_short(plist, value, name=nil)
-      version = Dean::ProjectVersionHelper.new.short_version_from_plist plist
+      version = XCBump::ProjectVersionHelper.new.short_version_from_plist plist
       semver_helper = Dean::SemverHelper.new
 
       new_version = version
@@ -50,7 +50,7 @@ module Dean
         new_version = semver_helper.bump_pre version, name
       end
 
-      Dean::ProjectVersionHelper.new.set_short_version_in_plist new_version, plist
+      XCBump::ProjectVersionHelper.new.set_short_version_in_plist new_version, plist
     end
 
   end
